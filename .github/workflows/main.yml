@@ -1,0 +1,30 @@
+name: CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - 'master'
+    paths:
+      - 'src/**/*'
+      - 'test/**/*'
+
+jobs:
+  ci:
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v2
+      with:
+        node-version: ${{ matrix.node-version }}
+    - run: npm install -g codecov
+    - run: npm i
+    - run: npm run ci
+    - run: codecov --disable=gcov

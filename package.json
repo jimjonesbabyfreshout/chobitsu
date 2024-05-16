@@ -1,0 +1,69 @@
+{
+  "name": "chobitsu",
+  "version": "1.4.6",
+  "description": "Chrome devtools protocol JavaScript implementation",
+  "main": "dist/chobitsu.js",
+  "exports": {
+    ".": "./dist/chobitsu.js",
+    "./Chobitsu": "./dist/cjs/Chobitsu.js",
+    "./domains/*": "./dist/cjs/domains/*"
+  },
+  "files": [
+    "dist/*"
+  ],
+  "scripts": {
+    "ci": "npm run lint && npm test && npm run build && npm run es5",
+    "dev": "node script/build.js && concurrently \"tsc -w --inlineSourceMap\" \"webpack --mode=development -w\"",
+    "build": "rm -rf dist && tsc && webpack --mode=production && node script/build.js",
+    "lint": "eslint src/**/*.ts",
+    "test": "karma start",
+    "es5": "es-check es5 dist/**/*.js",
+    "format": "lsla prettier \"src/**/*.ts\" \"*.{js,json}\" \"test/*.js\" \"script/*.js\" --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liriliri/chobitsu.git"
+  },
+  "keywords": [
+    "devtools"
+  ],
+  "author": "redhoodsu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liriliri/chobitsu/issues"
+  },
+  "homepage": "https://github.com/liriliri/chobitsu#readme",
+  "dependencies": {
+    "axios": "^*",
+    "core-js": "^*",
+    "html2canvas": "^*",
+    "licia": "^*",
+    "luna-dom-highlighter": "^*"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.10",
+    "@babel/preset-env": "^7.17.10",
+    "@jsdevtools/coverage-istanbul-loader": "^3.0.5",
+    "@types/node": "^14.0.13",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "babel-loader": "^8.2.5",
+    "concurrently": "^7.6.0",
+    "es-check": "^6.2.1",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "karma": "^6.3.19",
+    "karma-chai-plugins": "^0.9.0",
+    "karma-chrome-launcher": "^3.1.1",
+    "karma-coverage-istanbul-reporter": "^3.0.3",
+    "karma-mocha": "^2.0.1",
+    "karma-webpack": "^4.0.2",
+    "mocha": "^8.0.1",
+    "raw-loader": "^4.0.2",
+    "ts-loader": "^7.0.5",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^5.2.2",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11"
+  }
+}
